@@ -1,0 +1,17 @@
+.accessease-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 15px;
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    z-index: 9999;
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  .accessease-button:hover {
+    background-color: #3a7bc8;
+  }

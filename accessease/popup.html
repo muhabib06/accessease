@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AccessEase</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles/main.css">
+</head>
+<body>
+  <div class="card">
+    <h1>AccessEase</h1>
+    <div id="loginSection" style="display: none;">
+      <input type="email" id="email" placeholder="Email" required>
+      <input type="password" id="password" placeholder="Password" required>
+      <button id="loginButton">Login</button>
+      <p>Don't have an account? <a href="#" id="showRegisterLink">Register here</a></p>
+    </div>
+    <div id="registerSection" style="display: none;">
+      <input type="email" id="regEmail" placeholder="Email" required>
+      <input type="password" id="regPassword" placeholder="Password" required>
+      <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+      <button id="registerButton">Register</button>
+      <p>Already have an account? <a href="#" id="showLoginLink">Login here</a></p>
+    </div>
+    <div id="userSection" style="display: none;">
+      <div class="user-info" id="userInfo"></div>
+      <div class="user-info" id="profileType"></div>
+      <div class="feature-toggle">
+        <label class="switch">
+          <input type="checkbox" id="featureToggle">
+          <span class="slider"></span>
+        </label>
+        <label for="featureToggle">Enable Accessibility Features</label>
+      </div>
+      <button id="optionsButton">Options</button>
+      <button id="logoutButton" class="logout-button">Logout</button>
+    </div>
+  </div>
+  <script type="module" src="popup.js"></script>
+</body>
+</html>

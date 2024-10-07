@@ -1,0 +1,139 @@
+:root {
+    --primary-color: #4a90e2;
+    --secondary-color: #f5a623;
+    --background-color: #eaeaea;
+    --text-color: #333;
+    --card-background: #eaeaea;
+  }
+  
+  body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 20px;
+    width: auto;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    border-radius: 30px; 
+    overflow: hidden;
+  }
+  
+  .card {
+    background-color: var(--card-background);
+    border-radius: 35px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    margin-bottom: 20px;
+  }
+  
+  h1, h2 {
+    color: var(--primary-color);
+    margin-top: 0;
+  }
+  
+  input, select {
+    display: block;
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 25px;
+    font-size: 14px;
+    box-sizing: border-box;
+  }
+  
+  button {
+    display: block;
+    width: calc(100% - 10px); 
+    padding: 12px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all .3s ease;
+    margin-bottom: 10px; 
+ }
+  
+  button:hover {
+    background-color: #3a7bc8;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  }
+  
+  .success-message {
+    background-color: #3f8741;
+    color: white;
+    padding: 10px;
+    border-radius: 25px;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+  
+  .feature-toggle {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  
+  .feature-toggle label {
+    margin-left: 10px;
+  }
+  
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+  
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+  }
+  
+  input:checked + .slider {
+    background-color: var(--primary-color);
+  }
+  
+  input:checked + .slider:before {
+    transform: translateX(26px);
+  }
+  
+  .user-info {
+    margin-bottom: 15px;
+    font-weight: 500;
+  }
+  
+  .logout-button {
+    background-color: #ec4d3c; /* Red color for logout button */
+ }
+ 
+ .logout-button:hover {
+    background-color: #c0392b; /* Darker red on hover */
+ }
