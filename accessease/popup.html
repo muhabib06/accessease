@@ -7,6 +7,7 @@
 </head>
 <body>
   <div class="card">
+    <div id="confirmationMessage" class="confirmation-message" style="display: none;"></div>
     <h1>AccessEase</h1>
     <div id="loginSection" style="display: none;">
       <input type="email" id="email" placeholder="Email" required>
@@ -22,19 +23,43 @@
       <p>Already have an account? <a href="#" id="showLoginLink">Login here</a></p>
     </div>
     <div id="userSection" style="display: none;">
-      <div class="user-info" id="userInfo"></div>
-      <div class="user-info" id="profileType"></div>
-      <div class="feature-toggle">
-        <label class="switch">
-          <input type="checkbox" id="featureToggle">
-          <span class="slider"></span>
-        </label>
-        <label for="featureToggle">Enable Accessibility Features</label>
+        <div class="user-info" id="userInfo"></div>
+        <div class="user-info" id="profileType"></div>
+        
+        <div id="featuresContainer">
+          <!-- Feature containers will be dynamically added here -->
+        </div>
+        
+        <div id="additionalFeaturesContainer" style="display: none;">
+          <select id="additionalFeatures">
+            <option value="">Add more features</option>
+            <option value="highContrast">High Contrast</option>
+            <option value="textToSpeech">Text-to-Speech</option>
+            <option value="fontSize">Larger Font Size</option>
+            <option value="keyboardNav">Enhanced Keyboard Navigation</option>
+            <option value="colorBlind">Color Blind Friendly Mode</option>
+          </select>
+          <button id="addFeatureButton">Add Feature</button>
+        </div>
+        
+        <button id="optionsButton">Options</button>
+        <button id="logoutButton" class="logout-button">Logout</button>
       </div>
-      <button id="optionsButton">Options</button>
-      <button id="logoutButton" class="logout-button">Logout</button>
+    
+    <div id="optionsSection" style="display: none;">
+      <h2>Options</h2>
+      <h3>Select Your Accessibility Profile</h3>
+      <select id="disabilityProfile">
+        <option value="">Select a profile</option>
+        <option value="visual">Visual Impairment</option>
+        <option value="auditory">Auditory Impairment</option>
+        <option value="motor">Motor Impairment</option>
+        <option value="cognitive">Cognitive Impairment</option>
+      </select>
+      <button id="saveProfile">Save Profile</button>
+      <button id="backToUser">Back</button>
     </div>
   </div>
-  <script type="module" src="popup.js"></script>
+  <script src="popup.js"></script>
 </body>
 </html>

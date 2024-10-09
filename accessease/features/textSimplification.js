@@ -1,19 +1,46 @@
-export function initTextSimplification() {
-    function simplifyText(text) {
-      // This is a basic simplification. In a real scenario, you'd use more advanced NLP techniques.
-      return text.split('.').map(sentence => {
-        return sentence.split(' ').slice(0, 10).join(' ');
-      }).join('. ');
-    }
-  
-    const simplifyButton = document.createElement('button');
-    simplifyButton.textContent = 'Simplify Text';
-    simplifyButton.addEventListener('click', () => {
-      const selection = window.getSelection();
-      const range = selection.getRangeAt(0);
-      const simplifiedText = simplifyText(selection.toString());
-      range.deleteContents();
-      range.insertNode(document.createTextNode(simplifiedText));
-    });
-    document.body.appendChild(simplifyButton);
+// textSimplification.js
+
+let model;
+
+// Load the model when the extension is installed or updated
+chrome.runtime.onInstalled.addListener(async () => {
+  model = await loadModel();
+});
+
+async function loadModel() {
+  const modelUrl = chrome.runtime.getURL('model.tflite');
+  const response = await fetch(modelUrl);
+  const modelBuffer = await response.arrayBuffer();
+  return await tfTask.NLClassifier.CustomModel.TFLite.load({
+    model: modelBuffer,
+  });
+}
+
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+  if (request.action === "simplifyText") {
+    simplifyText(request.text).then(sendResponse);
+    return true; // Indicates that the response is asynchronous
   }
+});
+
+async function simplifyText(text) {
+  if (!model) {
+    model = await loadModel();
+  }
+
+  const result = await model.predict(text);
+  
+  // The model returns a classification. We'll use the highest scoring class as our simplified text.
+  const simplifiedText = result.classes.reduce((prev, current) => 
+    (prev.score > current.score) ? prev : current
+  ).className;
+
+  return simplifiedText;
+}
+
+// Content script to simplify text on the page
+chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
+  if (changeInfo.status === 'complete') {
+    chrome.tabs.sendMessage(tabId, { action: "simplifyPageText" });
+  }
+});
