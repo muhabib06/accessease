@@ -288,7 +288,8 @@ input:checked + .slider:before {
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
-    border-radius: 8px;
+    border-radius: 15px;
+    padding: 20px;
   }
   
   .close-modal {
@@ -305,5 +306,15 @@ input:checked + .slider:before {
     text-decoration: none;
     cursor: pointer;
   }
-
   
+  .feature-image {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 15px;
+    border-radius: 8px;
+  }
+
+  .feature-name {
+    font-size: 18px;
+    font-weight: bold;
+  }

@@ -324,3 +324,24 @@ function showConfirmationMessage(message) {
       }
     });
   });
+
+  function updateFeature(feature, isEnabled) {
+    updateFeatureUI(feature, isEnabled);
+  
+    chrome.storage.sync.get('features', async (data) => {
+      const features = data.features || {};
+      features[feature] = isEnabled;
+      chrome.storage.sync.set({ features: features }, () => {
+        if (feature === 'textSimplification' && isEnabled) {
+          chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+            chrome.tabs.sendMessage(tabs[0].id, { action: "simplifyPageText" });
+          });
+        } else {
+          chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+            chrome.tabs.sendMessage(tabs[0].id, { action: "toggleFeatures", features: features });
+          });
+        }
+        showConfirmationMessage(`${featureInfo[feature].name} ${isEnabled ? 'enabled' : 'disabled'}`);
+      });
+    });
+  }

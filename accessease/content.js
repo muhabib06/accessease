@@ -135,3 +135,54 @@ function colorBlindMode(activate) {
     if (style) style.remove();
   }
 }
+
+// content.js
+
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+  if (request.action === "simplifyPageText") {
+    simplifyPageText();
+  }
+});
+
+function simplifyPageText() {
+  const textNodes = document.evaluate(
+    '//text()[normalize-space()]',
+    document,
+    null,
+    XPathResult.UNORDERED_NODE_SNAPSHOT_TYPE,
+    null
+  );
+
+  for (let i = 0; i < textNodes.snapshotLength; i++) {
+    const node = textNodes.snapshotItem(i);
+    chrome.runtime.sendMessage({ action: "simplifyText", text: node.textContent }, (response) => {
+      if (response) {
+        node.textContent = response;
+      }
+    });
+  }
+}
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+  if (request.action === "simplifyPageText") {
+    simplifyPageText();
+  }
+});
+
+function simplifyPageText() {
+  const textNodes = document.evaluate(
+    '//text()[normalize-space()]',
+    document,
+    null,
+    XPathResult.UNORDERED_NODE_SNAPSHOT_TYPE,
+    null
+  );
+
+  for (let i = 0; i < textNodes.snapshotLength; i++) {
+    const node = textNodes.snapshotItem(i);
+    chrome.runtime.sendMessage({ action: "simplifyText", text: node.textContent }, (response) => {
+      if (response) {
+        node.textContent = response;
+      }
+    });
+  }
+}
