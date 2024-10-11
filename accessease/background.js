@@ -52,7 +52,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 });
 
 async function simplifyText(text) {
-  const apiKey = 'AIzaSyDhl9nToelii_uuclZhTWmfvdEprQY5FyM'; // actual API key
+  const apiKey = 'API'; // actual API key
   const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${apiKey}`;
 
   try {
